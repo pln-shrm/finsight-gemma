@@ -92,7 +92,7 @@ def test_never_fixed_answer_reports_errors_after_max_retries(tmp_path: Path):
 
     assert not rep.passed
     assert len(logs) == 3
-    assert all(not l.passed for l in logs)
+    assert all(not entry.passed for entry in logs)
     assert len(rep.errors) > 0
 
 

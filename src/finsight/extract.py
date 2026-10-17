@@ -183,7 +183,7 @@ def save_extraction_artifacts(
 
     log_path = ws / "run_log.json"
     log_path.write_text(
-        json.dumps([l.as_dict() for l in retry_logs], indent=2, ensure_ascii=False),
+        json.dumps([log_entry.as_dict() for log_entry in retry_logs], indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
 

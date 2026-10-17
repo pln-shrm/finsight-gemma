@@ -146,3 +146,5 @@ Append one line per finished task: `YYYY-MM-DD HH:MM T-xx short note`.
 - 2026-10-17 19:04 T-08 charts: multimodal chart extraction + OpenCV bar height measurement + Lie factor audit, 8 tests green.
 - 2026-10-17 19:07 T-11 recon: Non-GAAP reconciliation table extractor, footing verification, bloat auditor, 4 tests green.
 - 2026-10-17 19:10 T-09 & T-10 bench: synthetic chart generator + evaluation runner, 100% P/R measured, summary.md produced.
+- 2026-10-17 19:22 T-12 cli: Typer CLI (ingest, extract, charts, analyze, dcf, report, run, bench) with architecture exit codes, 9 tests green.
+- 2026-10-17 19:22 T-13 report: self-contained offline HTML audit report with base64 evidence crops, safe Jinja filters, DCF Monte Carlo plot, 4 tests green.

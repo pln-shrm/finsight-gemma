@@ -9,7 +9,6 @@ import pytest
 
 from finsight.ingest import PageInfo, ingest
 
-
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 

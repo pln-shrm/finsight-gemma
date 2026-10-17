@@ -1,7 +1,15 @@
 import math
 
-from finsight.forensics import (altman_z_double_prime, beneish_m, cash_conversion, dupont5, low_conversion_streak,
-                                non_gaap_bloat, piotroski_f, run_all)
+from finsight.forensics import (
+    altman_z_double_prime,
+    beneish_m,
+    cash_conversion,
+    dupont5,
+    low_conversion_streak,
+    non_gaap_bloat,
+    piotroski_f,
+    run_all,
+)
 
 
 def full(make_fs, S_, **over):

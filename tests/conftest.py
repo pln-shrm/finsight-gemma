@@ -1,6 +1,6 @@
 import pytest
 
-from finsight.schemas import Financials, FilingMeta, Provenance, Sourced
+from finsight.schemas import FilingMeta, Financials, Provenance, Sourced
 
 
 def S(value, prior=None, page=1):
