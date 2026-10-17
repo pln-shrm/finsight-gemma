@@ -139,3 +139,18 @@ def test_save_extraction_artifacts(tmp_path: Path):
     saved_logs = json.loads(log_p.read_text(encoding="utf-8"))
     assert len(saved_logs) == 1
     assert saved_logs[0]["passed"] is True
+
+
+def test_normalize_raw_json_dict_with_none_value(tmp_path: Path):
+    pdf = tmp_path / "filing.pdf"
+    _make_pdf(pdf, "Total Assets 1,000\nTotal Liabilities 600\nTotal Equity 400")
+    pages = ingest(pdf, tmp_path / "ws")
+
+    data = _valid_financials_dict()
+    # Model returns a dict with value=None instead of null
+    data["cash"] = {"value": None, "prov": None}
+    stub = StubBackend(responses=[data])
+    fin, rep, logs = extract_financials(pages, selected_page_numbers=[1], backend=stub)
+    assert rep.passed
+    assert fin.cash is None
+

@@ -233,11 +233,13 @@ class GeminiBackend:
         temperature: float = 0.0,
     ) -> dict[str, Any]:
         cleaned_schema = _clean_schema_for_gemini(schema) if schema else None
+        # Gemma models on Gemini API endpoint return 500 on temperature=0.0; use 0.2
+        eff_temp = 0.2 if (temperature == 0.0 and "gemma" in self.model_id) else temperature
         config = types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema=cleaned_schema,
             system_instruction=system if system else None,
-            temperature=temperature,
+            temperature=eff_temp,
         )
 
         def _call(user_text: str) -> str:

@@ -77,6 +77,17 @@ def _resolve_financials_provenance(
                     prov.bbox_source = source
 
 
+def _normalize_raw_json(raw: Any) -> Any:
+    """Normalize raw JSON: if an item is a dict with value=None, convert to None."""
+    if not isinstance(raw, dict):
+        return raw
+    cleaned = dict(raw)
+    for k, v in list(cleaned.items()):
+        if isinstance(v, dict) and "value" in v and v.get("value") is None:
+            cleaned[k] = None
+    return cleaned
+
+
 def extract_financials(
     pages: list[PageInfo],
     selected_page_numbers: list[int] | None,
@@ -129,7 +140,8 @@ def extract_financials(
         latency_ms = (time.perf_counter() - t0) * 1000.0
 
         # Validate with Pydantic
-        financials = Financials.model_validate(raw_json)
+        norm_json = _normalize_raw_json(raw_json)
+        financials = Financials.model_validate(norm_json)
 
         # Resolve bboxes from PDF text layer
         _resolve_financials_provenance(financials, pages_by_num)

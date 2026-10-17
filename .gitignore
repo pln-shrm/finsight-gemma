@@ -9,3 +9,4 @@ workspace/
 .ruff_cache/
 demo/filings/
 bench/results/*.tmp
+scratch/
