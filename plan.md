@@ -143,3 +143,4 @@ Append one line per finished task: `YYYY-MM-DD HH:MM T-xx short note`.
 - 2026-10-17 18:45 T-01 smoke test: verified local gemma4:e4b & cloud gemma-4-31b-it on multimodal OCR test image.
 - 2026-10-17 18:54 T-06 provenance: text layer bbox resolver + model format adapter + cropping, 8 tests green.
 - 2026-10-17 18:57 T-07 extract: orchestrator with solver verification loop, targeted retry prompts, run_log.json telemetry, 4 tests green.
+- 2026-10-17 19:04 T-08 charts: multimodal chart extraction + OpenCV bar height measurement + Lie factor audit, 8 tests green.
