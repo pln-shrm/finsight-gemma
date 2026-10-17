@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import tomllib
 from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
@@ -219,6 +220,14 @@ class GeminiBackend:
         self.model_id = model
         self.temperature = temperature
         resolved_key = api_key or os.environ.get("GEMINI_API_KEY")
+        if not resolved_key and sys.platform == "win32":
+            try:
+                import winreg
+
+                k = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment")
+                resolved_key, _ = winreg.QueryValueEx(k, "GEMINI_API_KEY")
+            except Exception:
+                pass
         if not resolved_key and client is None:
             raise ExtractionError("GEMINI_API_KEY environment variable is not set")
         self.client = client or genai.Client(api_key=resolved_key)
@@ -242,17 +251,29 @@ class GeminiBackend:
             temperature=eff_temp,
         )
 
-        def _call(user_text: str) -> str:
+        def _call(user_text: str, use_schema: bool = True) -> str:
             contents: list[Any] = [user_text]
             if images:
                 for img in images:
                     contents.append(types.Part.from_bytes(data=img, mime_type="image/png"))
-            res = self.client.models.generate_content(
-                model=self.model_id,
-                contents=contents,
-                config=config,
-            )
-            return res.text or "{}"
+            call_config = config
+            if not use_schema and cleaned_schema:
+                call_config = types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    system_instruction=system if system else None,
+                    temperature=eff_temp,
+                )
+            try:
+                res = self.client.models.generate_content(
+                    model=self.model_id,
+                    contents=contents,
+                    config=call_config,
+                )
+                return res.text or "{}"
+            except Exception as e:
+                if use_schema and cleaned_schema and ("500" in str(e) or "400" in str(e) or "INTERNAL" in str(e)):
+                    return _call(user_text, use_schema=False)
+                raise
 
         raw = _call(prompt)
         try:

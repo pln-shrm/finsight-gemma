@@ -130,10 +130,11 @@ def extract(
         typer.echo(f"Error: {e}", err=True)
         raise typer.Exit(code=2)
 
-    stmt_pages = selected_pages(scores, include=("FINANCIAL_STATEMENT", "NON_GAAP_RECON"))
-    page_numbers = [s.n for s in stmt_pages]
-    if not page_numbers:
-        page_numbers = [p.n for p in pages[:15]]
+    stmt_pages = selected_pages(scores, include=("FINANCIAL_STATEMENT",))
+    if not stmt_pages:
+        stmt_pages = selected_pages(scores, include=("FINANCIAL_STATEMENT", "NON_GAAP_RECON"))
+    top_pages = sorted(stmt_pages, key=lambda s: s.score, reverse=True)[:3]
+    page_numbers = sorted([s.n for s in top_pages]) if top_pages else [p.n for p in pages[:3]]
 
     try:
         be = choose_backend(
