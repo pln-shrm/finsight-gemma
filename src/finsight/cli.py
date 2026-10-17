@@ -54,21 +54,38 @@ def _load_pages_from_ws(ws: Path) -> list[PageInfo]:
         raise FileNotFoundError(f"Missing workspace directory: {text_dir}. Run 'finsight ingest' first.")
 
     pages: list[PageInfo] = []
-    for txt_file in sorted(text_dir.glob("page_*.txt")):
-        num_str = txt_file.stem.split("_")[-1]
-        n = int(num_str)
-        png_path = pages_dir / f"page_{n:03d}.png"
-        text = txt_file.read_text(encoding="utf-8")
+    # Primary: check for JSON files written by ingest.py (p0001.json, page_001.json, etc.)
+    json_files = sorted(text_dir.glob("*.json"))
+    if json_files:
+        for jf in json_files:
+            try:
+                data = json.loads(jf.read_text(encoding="utf-8"))
+                n = int(data.get("n", 1))
+                text = data.get("text", "")
+                words = []
+                for w in data.get("words", []):
+                    if isinstance(w, dict):
+                        words.append((w.get("text", ""), w.get("x0", 0.0), w.get("y0", 0.0), w.get("x1", 1.0), w.get("y1", 1.0)))
+                    elif isinstance(w, (list, tuple)):
+                        words.append(tuple(w))
 
-        json_file = text_dir / f"page_{n:03d}.json"
-        words = []
-        if json_file.exists():
-            words_data = json.loads(json_file.read_text(encoding="utf-8"))
-            words = [tuple(w) for w in words_data]
+                png_path = pages_dir / f"p{n:04d}.png"
+                if not png_path.exists():
+                    png_path = pages_dir / f"page_{n:03d}.png"
 
-        pages.append(PageInfo(n=n, png_path=png_path, words=words, text=text))
+                pages.append(PageInfo(n=n, png_path=png_path, words=words, text=text))
+            except (json.JSONDecodeError, KeyError, ValueError):
+                continue
+    else:
+        # Fallback for plain text files
+        for txt_file in sorted(text_dir.glob("page_*.txt")):
+            num_str = txt_file.stem.split("_")[-1]
+            n = int(num_str)
+            png_path = pages_dir / f"page_{n:03d}.png"
+            text = txt_file.read_text(encoding="utf-8")
+            pages.append(PageInfo(n=n, png_path=png_path, words=[], text=text))
 
-    return pages
+    return sorted(pages, key=lambda p: p.n)
 
 
 @app.command()

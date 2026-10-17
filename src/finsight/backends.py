@@ -189,6 +189,22 @@ class OllamaBackend:
                 ) from err
 
 
+def _clean_schema_for_gemini(d: Any) -> Any:
+    """Recursively strip 'additionalProperties' from JSON schema.
+
+    Google GenAI Developer API rejects 'additionalProperties' with a ValueError unless in Enterprise mode.
+    """
+    if isinstance(d, dict):
+        return {
+            k: _clean_schema_for_gemini(v)
+            for k, v in d.items()
+            if k not in ("additionalProperties", "additional_properties")
+        }
+    elif isinstance(d, list):
+        return [_clean_schema_for_gemini(v) for v in d]
+    return d
+
+
 class GeminiBackend:
     """Cloud inference via Google GenAI SDK (Gemini API)."""
 
@@ -216,9 +232,10 @@ class GeminiBackend:
         schema: dict[str, Any] | None = None,
         temperature: float = 0.0,
     ) -> dict[str, Any]:
+        cleaned_schema = _clean_schema_for_gemini(schema) if schema else None
         config = types.GenerateContentConfig(
             response_mime_type="application/json",
-            response_schema=schema,
+            response_schema=cleaned_schema,
             system_instruction=system if system else None,
             temperature=temperature,
         )
