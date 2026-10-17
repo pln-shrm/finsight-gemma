@@ -1,0 +1,50 @@
+{
+  "id": "chart_001",
+  "chart_type": "bar",
+  "title": "Revenue ($M) Comparison",
+  "axis_min": 145.9,
+  "values": [
+    243.1,
+    273.1,
+    298.2,
+    322.3
+  ],
+  "labels": [
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "has_secondary_axis": false,
+  "true_lie_factor_pairs": [
+    {
+      "from": "2021",
+      "to": "2022",
+      "lie_factor": 2.501028806584362,
+      "graphic_effect": 0.3086419753086423,
+      "data_effect": 0.12340600575894706,
+      "verdict": "distorted",
+      "severity": "alert"
+    },
+    {
+      "from": "2022",
+      "to": "2023",
+      "lie_factor": 2.147012578616352,
+      "graphic_effect": 0.19732704402515694,
+      "data_effect": 0.09190772610765274,
+      "verdict": "distorted",
+      "severity": "alert"
+    },
+    {
+      "from": "2023",
+      "to": "2024",
+      "lie_factor": 1.957977675640184,
+      "graphic_effect": 0.15824031516743287,
+      "data_effect": 0.08081824279007385,
+      "verdict": "distorted",
+      "severity": "alert"
+    }
+  ],
+  "should_flag": true,
+  "image_path": "synth\\images\\chart_001.png"
+}

@@ -1,0 +1,116 @@
+{
+  "suite": "synth",
+  "total_charts": 10,
+  "true_positives": 4,
+  "false_positives": 0,
+  "true_negatives": 6,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "cv_measurement_rate": 1.0,
+  "mean_lie_factor_error": 0.3278,
+  "mean_latency_ms": 39.32,
+  "details": [
+    {
+      "id": "chart_001",
+      "true_flag": true,
+      "pred_flag": true,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.1316,
+      "latency_ms": 117.08
+    },
+    {
+      "id": "chart_002",
+      "true_flag": true,
+      "pred_flag": true,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 1.6463,
+      "latency_ms": 38.5
+    },
+    {
+      "id": "chart_003",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.0492,
+      "latency_ms": 24.82
+    },
+    {
+      "id": "chart_004",
+      "true_flag": true,
+      "pred_flag": true,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.135,
+      "latency_ms": 39.38
+    },
+    {
+      "id": "chart_005",
+      "true_flag": true,
+      "pred_flag": true,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.5546,
+      "latency_ms": 23.91
+    },
+    {
+      "id": "chart_006",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "UNSCORED",
+      "basis": null,
+      "cv_measured": true,
+      "lf_error": null,
+      "latency_ms": 31.82
+    },
+    {
+      "id": "chart_007",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.0304,
+      "latency_ms": 28.06
+    },
+    {
+      "id": "chart_008",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.0337,
+      "latency_ms": 32.32
+    },
+    {
+      "id": "chart_009",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "SCORED",
+      "basis": "cv_pixels",
+      "cv_measured": true,
+      "lf_error": 0.0413,
+      "latency_ms": 22.55
+    },
+    {
+      "id": "chart_010",
+      "true_flag": false,
+      "pred_flag": false,
+      "status": "UNSCORED",
+      "basis": null,
+      "cv_measured": true,
+      "lf_error": null,
+      "latency_ms": 34.79
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "chart_005",
+  "chart_type": "bar",
+  "title": "Revenue ($M) Comparison",
+  "axis_min": 250.0,
+  "values": [
+    294.1,
+    342.2,
+    416.0
+  ],
+  "labels": [
+    "Segment A",
+    "Segment B",
+    "Segment C"
+  ],
+  "has_secondary_axis": false,
+  "true_lie_factor_pairs": [
+    {
+      "from": "Segment A",
+      "to": "Segment B",
+      "lie_factor": 6.66893424036281,
+      "graphic_effect": 1.0907029478458037,
+      "data_effect": 0.1635498129887792,
+      "verdict": "distorted",
+      "severity": "alert"
+    },
+    {
+      "from": "Segment B",
+      "to": "Segment C",
+      "lie_factor": 3.711496746203905,
+      "graphic_effect": 0.8004338394793928,
+      "data_effect": 0.21566335476329637,
+      "verdict": "distorted",
+      "severity": "alert"
+    }
+  ],
+  "should_flag": true,
+  "image_path": "synth\\images\\chart_005.png"
+}

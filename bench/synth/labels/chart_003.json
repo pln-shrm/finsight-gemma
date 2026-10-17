@@ -1,0 +1,61 @@
+{
+  "id": "chart_003",
+  "chart_type": "bar",
+  "title": "Gross Profit ($M) Comparison",
+  "axis_min": 0.0,
+  "values": [
+    141.2,
+    185.1,
+    236.5,
+    259.7,
+    305.6
+  ],
+  "labels": [
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "has_secondary_axis": false,
+  "true_lie_factor_pairs": [
+    {
+      "from": "2020",
+      "to": "2021",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.3109065155807366,
+      "data_effect": 0.3109065155807366,
+      "verdict": "faithful",
+      "severity": "ok"
+    },
+    {
+      "from": "2021",
+      "to": "2022",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.27768773635872507,
+      "data_effect": 0.27768773635872507,
+      "verdict": "faithful",
+      "severity": "ok"
+    },
+    {
+      "from": "2022",
+      "to": "2023",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.09809725158562363,
+      "data_effect": 0.09809725158562363,
+      "verdict": "faithful",
+      "severity": "ok"
+    },
+    {
+      "from": "2023",
+      "to": "2024",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.17674239507123618,
+      "data_effect": 0.17674239507123618,
+      "verdict": "faithful",
+      "severity": "ok"
+    }
+  ],
+  "should_flag": false,
+  "image_path": "synth\\images\\chart_003.png"
+}

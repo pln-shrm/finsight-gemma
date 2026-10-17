@@ -1,0 +1,39 @@
+{
+  "id": "chart_004",
+  "chart_type": "bar",
+  "title": "Revenue ($M) Comparison",
+  "axis_min": 60.2,
+  "values": [
+    100.4,
+    108.3,
+    141.3
+  ],
+  "labels": [
+    "FY22",
+    "FY23",
+    "FY24"
+  ],
+  "has_secondary_axis": false,
+  "true_lie_factor_pairs": [
+    {
+      "from": "FY22",
+      "to": "FY23",
+      "lie_factor": 2.4975124378109452,
+      "graphic_effect": 0.19651741293532315,
+      "data_effect": 0.07868525896414334,
+      "verdict": "distorted",
+      "severity": "alert"
+    },
+    {
+      "from": "FY23",
+      "to": "FY24",
+      "lie_factor": 2.2515592515592515,
+      "graphic_effect": 0.6860706860706864,
+      "data_effect": 0.30470914127423837,
+      "verdict": "distorted",
+      "severity": "alert"
+    }
+  ],
+  "should_flag": true,
+  "image_path": "synth\\images\\chart_004.png"
+}

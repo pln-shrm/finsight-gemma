@@ -1,0 +1,39 @@
+{
+  "id": "chart_010",
+  "chart_type": "bar",
+  "title": "ARR ($M) Comparison",
+  "axis_min": 0.0,
+  "values": [
+    149.2,
+    186.0,
+    217.4
+  ],
+  "labels": [
+    "Segment A",
+    "Segment B",
+    "Segment C"
+  ],
+  "has_secondary_axis": true,
+  "true_lie_factor_pairs": [
+    {
+      "from": "Segment A",
+      "to": "Segment B",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.24664879356568375,
+      "data_effect": 0.24664879356568375,
+      "verdict": "faithful",
+      "severity": "ok"
+    },
+    {
+      "from": "Segment B",
+      "to": "Segment C",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.1688172043010753,
+      "data_effect": 0.1688172043010753,
+      "verdict": "faithful",
+      "severity": "ok"
+    }
+  ],
+  "should_flag": false,
+  "image_path": "synth\\images\\chart_010.png"
+}

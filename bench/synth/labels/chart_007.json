@@ -1,0 +1,39 @@
+{
+  "id": "chart_007",
+  "chart_type": "bar",
+  "title": "Free Cash Flow ($M) Comparison",
+  "axis_min": 0.0,
+  "values": [
+    219.9,
+    255.0,
+    296.1
+  ],
+  "labels": [
+    "FY22",
+    "FY23",
+    "FY24"
+  ],
+  "has_secondary_axis": false,
+  "true_lie_factor_pairs": [
+    {
+      "from": "FY22",
+      "to": "FY23",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.15961800818553884,
+      "data_effect": 0.15961800818553884,
+      "verdict": "faithful",
+      "severity": "ok"
+    },
+    {
+      "from": "FY23",
+      "to": "FY24",
+      "lie_factor": 1.0,
+      "graphic_effect": 0.1611764705882354,
+      "data_effect": 0.1611764705882354,
+      "verdict": "faithful",
+      "severity": "ok"
+    }
+  ],
+  "should_flag": false,
+  "image_path": "synth\\images\\chart_007.png"
+}
