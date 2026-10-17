@@ -369,7 +369,9 @@ def bench(
     synth_dir: Annotated[Path, typer.Option("--synth-dir", help="Synthetic charts directory")] = Path("bench/synth"),
     out_dir: Annotated[Path, typer.Option("--out-dir", help="Output directory")] = Path("bench/results"),
 ) -> None:
-    """Run FinSight benchmark on synthetic or real test suites."""
+    import sys
+    if str(Path.cwd()) not in sys.path:
+        sys.path.insert(0, str(Path.cwd()))
     from bench.run_bench import run_synthetic_benchmark
     run_synthetic_benchmark(synth_dir=synth_dir, out_dir=out_dir, limit=limit)
 
