@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)](https://www.python.org/)
 [![Gemma 4](https://img.shields.io/badge/model-Gemma%204%20(e4b%20%7C%2031b)-purple)](https://github.com/google-deepmind/gemma)
-[![Tests](https://img.shields.io/badge/tests-93%20passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/tests-99%20passed-brightgreen)](tests/)
 [![Agent Skills](https://img.shields.io/badge/spec-Agent%20Skills-success)](https://agentskills.io/)
 
 > **Gemma 4 reads the charts and tables. Deterministic Python computes and verifies the math.**
