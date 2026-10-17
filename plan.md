@@ -139,3 +139,5 @@ Append one line per finished task: `YYYY-MM-DD HH:MM T-xx short note`.
 - 2026-10-17 seed: schemas, solver, lie_factor, forensics, dcf + 29 passing tests; SKILL.md validated for frontmatter limits.
 - 2026-10-17 18:06 T-02 ingest: PDF → page PNGs + text layer with normalized word bboxes, 12 tests green.
 - 2026-10-17 18:15 T-03 triage: deterministic regex/keyword page scoring + unit detection, 9 tests green.
+- 2026-10-17 18:35 T-04 & T-05 backends & cache: Ollama + Gemini adapters, content-hash cassette caching, replay mode, confidential routing, 6 tests green.
+- 2026-10-17 18:45 T-01 smoke test: verified local gemma4:e4b & cloud gemma-4-31b-it on multimodal OCR test image.
