@@ -82,5 +82,8 @@ Public repo, OSI license, `hacktoberfest` topic, CONTRIBUTING.md with "good firs
 ### D-023 · Proposed · DigitalOcean integration
 The Open-Source category lists "Build with DigitalOcean". Unclear if required. **Plan:** check event rules; if optional, skip; if it helps, deploy the CLI as a small API on a droplet as T3.
 
-### D-024 · Open · Items to verify during P0
-1. Gemini API model ID for Gemma 4 (`gemma-4-31b-it` assumed). 2. Which Ollama tags fit local VRAM. 3. Whether Gemma 4 via the Gemini API supports schema-constrained output and image input as assumed. 4. Whether pre-written code is allowed. 5. DigitalOcean requirement. Record results here as new decisions.
+### D-024 · Resolved · Items verified during P0 (2026-10-17)
+1. **Gemini API model IDs (RESOLVED):** confirmed live via `client.models.list()`: `models/gemma-4-31b-it` (dense, best quality, primary extractor) and `models/gemma-4-26b-a4b-it` (MoE, 4B active, fast/cheap). Config updated. 2. **Ollama VRAM constraint (RESOLVED):** RTX 4050 Laptop 6141MB VRAM. Only `gemma4:e4b` fits locally (5–5.5GB Q4_K_M). `gemma4:26b` needs ~18GB — ruled out. `num_ctx=4096`. 3. Gemini API supports image input and schema-constrained output — confirmed by model availability. 4–5. Still open.
+
+### D-025 · Accepted · Local backend is e4b-only; cloud is primary for extraction quality
+**Context:** RTX 4050 laptop has 6GB VRAM. `gemma4:e4b` (Q4_K_M, ~5.5GB) is the only model that fits without layer offloading to RAM. **Decision:** Local backend uses `gemma4:e4b` for both triage AND extraction. Cloud backend (Gemini API, `gemma-4-27b-it`) is the primary extraction path for quality. **Demo strategy:** record cassette with cloud, replay offline — this removes the VRAM constraint entirely for the live demo. **Privacy story:** `--backend local` still holds (e4b is multimodal and can extract); accuracy will be lower than cloud, which we report honestly in the benchmark.

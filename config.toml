@@ -3,13 +3,17 @@
 provider = "ollama"
 host = "http://localhost:11434"
 triage_model = "gemma4:e4b"       # fast, cheap; ambiguous-page triage only
-extract_model = "gemma4:26b"      # MoE (about 4B active); try gemma4:31b if VRAM allows, else gemma4:e4b
-num_ctx = 32768                   # set explicitly; Ollama's default context is small
+extract_model = "gemma4:e4b"      # RTX 4050 6GB VRAM: only e4b fits (5-5.5GB at Q4); 26b needs ~18GB
+num_ctx = 4096                    # CRITICAL: keep low on 6GB VRAM; KV cache overflows above ~8K on this card
 temperature = 0.0
+# hardware_note: RTX 4050 Laptop 6141MB VRAM. gemma4:e4b (Q4_K_M) uses ~5-5.5GB.
+# num_ctx=4096 leaves ~0.5-1GB for KV cache. Do NOT raise above 8192 or layers spill to RAM.
+# For best extraction quality, use --backend cloud (Gemini API) which has no VRAM constraint.
 
 [backends.cloud]
 provider = "gemini"
-extract_model = "gemma-4-31b-it"  # VERIFY with the models list endpoint on the day
+extract_model = "gemma-4-31b-it"       # VERIFIED 2026-10-17: live on Gemini API, best quality
+fast_model   = "gemma-4-26b-a4b-it"   # VERIFIED 2026-10-17: MoE, 4B active, faster + cheaper
 api_key_env = "GEMINI_API_KEY"
 temperature = 0.0
 
