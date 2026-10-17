@@ -150,4 +150,6 @@ Append one line per finished task: `YYYY-MM-DD HH:MM T-xx short note`.
 - 2026-10-17 19:22 T-13 report: self-contained offline HTML audit report with base64 evidence crops, safe Jinja filters, DCF Monte Carlo plot, 4 tests green.
 - 2026-10-17 19:25 T-14 skill: finsight-quant-analyst validated against Agent Skill specs, references verified, Antigravity junction active.
 - 2026-10-17 19:27 T-15 docs: comprehensive README with Mermaid architecture & measured bench table, docs/WRITEUP.md DEV post draft, demo filing suite documented.
-- 2026-10-17 19:30 T-16 mcp: standard JSON-RPC 2.0 stdio MCP server (audit_filing, audit_chart_image, calculate_dcf), 6 tests green. Total 99 tests passing.
+- 2026-10-17 19:30 T-16 mcp: standard JSON-RPC 2.0 stdio MCP server (audit_filing, audit_chart_image, calculate_dcf), 6 tests green.
+- 2026-10-17 20:10 Wrap-up: 100 tests green (100% passing), ruff clean, git repo pushed to origin/main. Ready for submission.
+
