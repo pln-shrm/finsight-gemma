@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.env
+workspace/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+demo/filings/
+bench/results/*.tmp

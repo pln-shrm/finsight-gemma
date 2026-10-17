@@ -1,0 +1,39 @@
+# Model IDs are verified at setup (plan.md P0). Never hardcode them in code.
+[backends.local]
+provider = "ollama"
+host = "http://localhost:11434"
+triage_model = "gemma4:e4b"       # fast, cheap; ambiguous-page triage only
+extract_model = "gemma4:26b"      # MoE (about 4B active); try gemma4:31b if VRAM allows, else gemma4:e4b
+num_ctx = 32768                   # set explicitly; Ollama's default context is small
+temperature = 0.0
+
+[backends.cloud]
+provider = "gemini"
+extract_model = "gemma-4-31b-it"  # VERIFY with the models list endpoint on the day
+api_key_env = "GEMINI_API_KEY"
+temperature = 0.0
+
+[routing]
+default = "auto"                  # auto | local | cloud
+confidential_forces_local = true
+
+[verification]
+rel_tol = 0.005
+abs_tol = 1.0
+max_retries = 3
+
+[thresholds]
+lie_factor_tolerance = 0.05
+non_gaap_bloat_flag = 0.25
+beneish_m_flag = -1.78
+cash_conversion_floor = 0.8
+accrual_ratio_flag = 0.05
+
+[dcf]
+years = 10
+mc_runs = 10000
+mc_seed = 7
+
+[triage]
+max_pages_for_model = 40          # keyword scoring ranks pages; only top ambiguous pages go to the small model
+render_dpi = 160
